@@ -65,8 +65,13 @@ function Mask({ isVisible }: { isVisible: boolean }) {
         className="p-1 drop-shadow-md bg-black flex flex-col gap-0.5 min-w-36"
         variants={list}
       >
-        {items.map((item, index) => (
-          <motion.li className={liclsx} custom={index} variants={variants}>
+        {items.map((_item, index) => (
+          <motion.li
+            key={index}
+            className={liclsx}
+            custom={index}
+            variants={variants}
+          >
             Item {index + 1}
           </motion.li>
         ))}
