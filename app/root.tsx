@@ -9,6 +9,9 @@ import {
 
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
+import { Link } from "react-router";
+import { GridPattern } from "./magic-ui/grid-pattern";
+import clsx from "clsx";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -33,8 +36,31 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="w-screen h-screen">
+        <GridPattern
+          width={20}
+          height={20}
+          x={-1}
+          y={-1}
+          className={clsx(
+            "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] "
+          )}
+        />
+
+        <header>
+          <nav>
+            <ul className="p-2 flex gap-1">
+              <li>
+                <Link to={"/"}>home</Link>
+              </li>
+              <li>
+                <Link to={"/mask1"}>mask1</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+
+        <main className="p-2">{children}</main>
         <ScrollRestoration />
         <Scripts />
       </body>
